@@ -12,12 +12,12 @@ infile.close()
 ##inotherfile.close()
 
 #Set up database, admin@localhost for now
-db = MySQLdb.connect(host='127.0.0.1', user='admin', passwd='Aiden0701', db='LiveFeed')
+db = MySQLdb.connect(host='127.0.0.1', user='yourUser', passwd='yourPasswd', db='yourDB')
 db.set_character_set('utf8')
 curr=db.cursor()
 
-#######Query the database for political expressions#######
-curr.execute("""SELECT * FROM gnipprepost WHERE BODY REGEXP 'obama | romney | bloomberg | m.t.a | mta | schumer | nypd | fdny | port | authority | fema | nyoem | mayor | senator | hud | Cuomo | police | transit | njt | nfip | conservtive | conservatives | liberal | liberals | republican | republicans | democrat | democrats | dems | dem | gillibrand | oem | subway | cops | national guard | voter | vote | election | napolitano | sanitation | garbage'""")
+#######Query the database for New York City political expressions#######
+curr.execute("""SELECT * FROM yourTable WHERE BODY REGEXP 'obama | romney | bloomberg | m.t.a | mta | schumer | nypd | fdny | port | authority | fema | nyoem | mayor | senator | hud | Cuomo | police | transit | njt | nfip | conservtive | conservatives | liberal | liberals | republican | republicans | democrat | democrats'""")
 rows = curr.fetchall()
 
 #store tweets
@@ -47,8 +47,8 @@ for w in Nwords[35:]:
      nkeywords.append(w.rstrip('\n'))
 
 ##once for positive words
-##for w2 in Pwords[35:]:
-##    pkeywords.append(w2.rstrip('\n'))
+for w2 in Pwords[35:]:
+    pkeywords.append(w2.rstrip('\n'))
     
 #compile method of re matches EXACT expressions
 RE_WORD = re.compile(r'\b[a-zA-Z]+\b') 
@@ -67,9 +67,9 @@ for k in [x.lower() for x in listOfTweets]:
             #print 'NEGATIVE', k
             ncount -= 1
  
-##        if word in pkeywords:            
-##            #print 'POSITIVE', k
-##            ncount +=1
+        if word in pkeywords:            
+            #print 'POSITIVE', k
+            ncount +=1
     Tweet.append(k)
     #print "TWEET: ", Tweet[-1]
     #print "K: ", k
