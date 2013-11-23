@@ -8,8 +8,8 @@ infile = open('negative-words.txt', 'r')
 Nwords = infile.readlines() #read the list(technically string) of negative words
 infile.close()
 
-##Pwords = inotherfile.readlines()
-##inotherfile.close()
+Pwords = inotherfile.readlines()
+inotherfile.close()
 
 #Set up database, admin@localhost for now
 db = MySQLdb.connect(host='127.0.0.1', user='yourUser', passwd='yourPasswd', db='yourDB')
