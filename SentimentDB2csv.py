@@ -3,7 +3,7 @@ import re
 import csv
 
 infile = open('negative-words.txt', 'r')
-##inotherfile = open('positive-words.txt', 'r')
+inotherfile = open('positive-words.txt', 'r')
 
 Nwords = infile.readlines() #read the list(technically string) of negative words
 infile.close()
